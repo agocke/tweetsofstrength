@@ -11,7 +11,7 @@ class TwitterStreamClient(object):
 
     conn = pycurl.Curl()
     conn.setopt(pycurl.HTTPAUTH, pycurl.HTTPAUTH_BASIC)
-    conn.setopt(pycurl.USERPWD, '{}:{}'.format(auth['user'],
+    conn.setopt(pycurl.USERPWD, '{0}:{1}'.format(auth['user'],
                                                auth['password']))
     conn.setopt(pycurl.URL, 'https://stream.twitter.com/1/statuses/filter.json')
     conn.setopt(pycurl.POSTFIELDS, urllib.urlencode(dict(track=topics)))
