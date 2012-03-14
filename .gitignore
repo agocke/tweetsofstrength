@@ -1,2 +1,3 @@
 twitter_auth.json
 venv
+*.pyc
