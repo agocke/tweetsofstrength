@@ -1,7 +1,11 @@
-from bottle import route,run
+import bottle
 
-@route('/tweetsofstrength/hello')
+@bottle.route('/tweetsofstrength/hello')
 def hello():
   return 'Hello, World!'
 
-run(host='localhost', port=8181)
+def main():
+  bottle.run(host='unix:///tmp/tos.sock')
+
+if __name__ == '__main__':
+  main()
