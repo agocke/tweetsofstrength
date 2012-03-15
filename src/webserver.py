@@ -26,7 +26,10 @@ def get_tweets(keyword, page=1):
 
 def main():
   global _TWEETS
-  _TWEETS = twitter_query.load_tweets()
+  if len(sys.argv) > 1:
+    _TWEETS = twitter_query.load_tweets(sys.argv[1])
+  else:
+    _TWEETS = twitter_query.load_tweets()
   if not _TWEETS:
     print("Couldn't load tweet pickle, exiting.", file=sys.stderr)
   else:
