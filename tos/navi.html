@@ -1,0 +1,88 @@
+<html>
+<head>
+<LINK REL="ICON" HREF="images/s.jpg" type="image/jpg"/>
+<title>Tweets Of Strength</title> 
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+ 
+<link href="CSS/default.css" rel="stylesheet" type="text/css" /> 
+
+<style type="text/css"> 
+
+</style> 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<link type="text/css" href="css/themename/jquery-ui-1.8.18.custom.css" rel="Stylesheet" />	
+<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
+ <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+
+ <script src="jquery-1.7.1.js"></script>
+<SCRIPT TYPE="text/javascript"> 
+	
+	
+  
+
+  function searchKeywords()
+  {
+    var keywords, url, text, userid, date;
+    text=new Array();
+    userid=new Array();
+    date=new Array();
+     keywords=document.getElementById('keywords');
+     url="http//localhost:8181/tos/tweets/"+keywords.value;
+//alert(url);
+     
+    var _array=new Array();
+     _array[1]="I";
+     _array[2]="am";
+     _array[3]="your";
+     _array[4]="father";
+     
+    var i=1;
+    $('li').each(function(index) {
+    $(this).replaceWith(_array[i]+"<br/>");
+    i++;
+    });
+     
+   
+     $.getJSON(url, function(data){
+	$.each(data,function(index){
+	text[index]=data[index].text;
+	userid[index]=data[index].user_id;
+	date[index]=data[index].date_tweeted;
+	});
+	});
+     
+   
+     
+     
+   
+  }
+ 
+  </script>
+</head>
+
+<body style="font size:20;">
+ 
+ <div id="search">
+    <form>
+    <br/>
+	<input type="text" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" value="Enter Search Keywords" id="keywords" />
+	 <input type="button" value="Search" onClick="searchKeywords()">
+	    <ul style="list-style-type: none;" id="tweets">
+		<li>2</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>9</li>
+		<li>10</li>
+	    </ul>
+		
+  </form>
+ </div>
+
+
+</body>
+</html>
