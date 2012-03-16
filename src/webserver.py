@@ -12,6 +12,11 @@ _TWEETS = None
 def hello():
   return 'Hello, World!'
 
+
+@bottle.route('/tos/static/<filepath:path>')
+def serve_static(filepath):
+  return bottle.static_file(filepath, root='static')
+
 @bottle.route('/tos/tweets/<keyword:re:\w+>')
 @bottle.route('/tos/tweets/<keyword:re:\w+>/<page:int>')
 def get_tweets(keyword, page=1):
