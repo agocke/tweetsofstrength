@@ -2,6 +2,7 @@ from __future__ import print_function
 
 import bottle
 import json
+import os
 import sys
 
 import twitter_query
@@ -15,10 +16,12 @@ def hello():
 
 @bottle.route('/tos/static/<filepath:path>')
 def serve_static(filepath):
-  return bottle.static_file(filepath, root='static')
+  return bottle.static_file(filepath,
+                            root=os.path.join(os.path.dirname(__file__),
+                                              'static'))
 
-@bottle.route('/tos/tweets/<keyword:re:\w+>')
-@bottle.route('/tos/tweets/<keyword:re:\w+>/<page:int>')
+@bottle.route('/tos/tweets/<keyword>')
+@bottle.route('/tos/tweets/<keyword>/<page:int>')
 def get_tweets(keyword, page=1):
   filtered = twitter_query.search_tweets(_TWEETS, keyword)
   if len(filtered) <= (page-1)*10:
