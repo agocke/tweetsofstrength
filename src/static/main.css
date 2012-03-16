@@ -1,0 +1,17 @@
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin: 10px 0px;
+}
+
+.author {
+  color: blue;
+  margin-left: 20px;
+}
+
+#tweets {
+  margin: auto;
+  width: 80%
+}

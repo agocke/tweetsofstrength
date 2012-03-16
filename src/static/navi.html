@@ -1,82 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<LINK REL="ICON" HREF="images/s.jpg" type="image/jpg"/>
-<title>Tweets Of Strength</title> 
-<META http-equiv="Content-Type" content="text/html; charset=utf-8">
- 
-<link href="CSS/default.css" rel="stylesheet" type="text/css" /> 
+  <head>
+    <link REL="ICON" HREF="images/s.jpg" type="image/jpg"/>
+    <title>Tweets Of Strength</title> 
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="/tos/static/main.css" rel="stylesheet" type="text/css" /> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="/tos/static/get_tweets.js"></script>
+  </head>
+  <body style="font size:20;">
+    <form action="javascript:search();">
+      <input type="text" id="keywords">
+      <input type="submit" value="Search">
+    </form>
+    <br />
 
-<style type="text/css"> 
+    <div id="proportion"></div>
 
-</style> 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-<link type="text/css" href="css/themename/jquery-ui-1.8.18.custom.css" rel="Stylesheet" />	
-<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
- <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+    <div id="tweets">
+    <ul id="tweets_list">
+    </ul>
+    </div>
 
- <script src="jquery-1.7.1.js"></script>
- <script src="/tos/static/get_tweets.js"></script>
-<SCRIPT TYPE="text/javascript"> 
-	
-	
-  
-
-  function searchKeywords()
-  {
-    var keywords, url, text, userid, date;
-    text=new Array();
-    userid=new Array();
-    date=new Array();
-     keywords=document.getElementById('keywords');
-     url="http//localhost:8181/tos/tweets/"+keywords.value;
-//alert(url);
-     
-    var _array=new Array();
-     _array[1]="I";
-     _array[2]="am";
-     _array[3]="your";
-     _array[4]="father";
-     
-    var i=1;
-    $('li').each(function(index) {
-    $(this).replaceWith(_array[i]+"<br/>");
-    i++;
-    });
-     
-   
-     $.getJSON(url, function(data){
-	$.each(data,function(index){
-	text[index]=data[index].text;
-	userid[index]=data[index].user_id;
-	date[index]=data[index].date_tweeted;
-	});
-	});
-     
-   
-     
-     
-   
-  }
- 
-  </script>
-</head>
-
-<body style="font size:20;">
-  <form action="javascript:search();">
-    <input type="text" id="keywords">
-    <input type="submit" value="Search">
-  </form>
-
-   <ul style="list-style-type: none;" id="tweets">
-   </ul>
-		
-
- <script type="text/javascript">
-   function search() {
-     alert($('#keywords').val());
-     fetchNewTweets($('#keywords').val(), 1);
-   };
- </script>
-</body>
+    <script type="text/javascript">
+      function search() {
+        fetchNewTweets($('#keywords').val(), 1);
+      };
+    </script>
+  </body>
 </html>

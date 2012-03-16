@@ -20,17 +20,12 @@ def serve_static(filepath):
                             root=os.path.join(os.path.dirname(__file__),
                                               'static'))
 
+
 @bottle.route('/tos/tweets/<keyword>')
 @bottle.route('/tos/tweets/<keyword>/<page:int>')
 def get_tweets(keyword, page=1):
-  filtered = twitter_query.search_tweets(_TWEETS, keyword)
-  if len(filtered) <= (page-1)*10:
-    return "No more results"
-  elif len(filtered) <= page*10:
-    upper = len(filtered)
-  else:
-    upper = page*10
-  return json.dumps([t._asdict() for t in filtered[(page-1)*10:upper]])
+  return json.dumps(twitter_query.search_tweets(_TWEETS, keyword))
+
 
 def main():
   global _TWEETS
@@ -42,6 +37,7 @@ def main():
     print("Couldn't load tweet pickle, exiting.", file=sys.stderr)
   else:
     bottle.run(host='localhost', port=8181)
+
 
 if __name__ == '__main__':
   main()
